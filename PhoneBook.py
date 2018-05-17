@@ -16,12 +16,15 @@ now lets use the .match() method to match the compiled RE with MyString mystring
 
 # Writing a function to present the phone book menu 
 
+# Writing a function to present the phone book menu 
+
 def phonebook_menu():
     print('Option 1. Add a Phone Number Entry')
     print('Option 2. Delete a Phone Number Entry')
     print('Option 3. Edit a Phone Number Entry')
-    print('Option 4. View all Contact Information')
-    print('Option 5. Quit')
+    print('Option 4. View a Contact Information')
+    print('Option 5. View Full Phonebook')
+    print('Option 6. Quit')
     print()
 
 def validPhone(number):
@@ -38,8 +41,8 @@ menu_choice = 0
 phonebook_menu()
 
 
-while menu_choice != 5:
-    menu_choice = int(input("Select a menu Option (1-5): "))
+while menu_choice != 6:
+    menu_choice = int(input("Select a menu Option (1-6): "))
 
     #When choosing option 1 it should accept a first name, last name and a phone number
     if menu_choice == 1:
@@ -101,27 +104,35 @@ while menu_choice != 5:
     
     elif menu_choice == 3:
         print("\nEditing Contact Information")
-        name = input("\nEnter Full Name: ")
-        if name in contact_info:
+        selection = str(input("\n\nWould you like to change Name or PhoneNumber? Enter here:"))
+        if selection.lower() == 'name':
+            name = str(input("\nEnter Current Full Name: "))
             print(contact_info[name])
-        else:
-                print(name, "was not found")
-    
+            if name in contact_info:
+                new_name = str(input("\nEnter New Name: "))
+                contact_info[new_name] = contact_info.pop(name)
+            else:
+                selection.lower() == 'phonenumber'
+                phone = input('Please enter CURRENT number in the format XXX-XXX-XXXX: ')
+                print(contact_info[name]['phone_number'])
+                if phone in contact_info[name]['phone_number']:
+                    new_number = input('Please enter NEW number in the format XXX-XXX-XXXX: ')
+                    contact_info[name][new_number] = contact_info[name].pop(phone)
+                    print(name, "was not found")
+
     
     elif menu_choice == 4:
         print("\nLookup Contact Information")
         name = input("\nEnter Full Name: ")
         if name in contact_info:
-            #new_tempdict = {}
-            #new_tempdict['phone_number']  = []
-            #tempdict['email_address'] = []
-            #tempdict['phone_number'].append(phone)
-            #tempdict['email_address'].append(email)
-            #contact_info[name] = tempdict
             print(contact_info[name])
         else:
                 print(name, "was not found")
+                
+                
+    elif menu_choice == 5:
+        print("\nFull PhoneBook")
+        print(contact_info)
 
-    elif menu_choice != 5:
+    elif menu_choice != 6:
         phonebook_menu()
-
