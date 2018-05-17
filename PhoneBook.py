@@ -16,8 +16,6 @@ now lets use the .match() method to match the compiled RE with MyString mystring
 
 # Writing a function to present the phone book menu 
 
-# Writing a function to present the phone book menu 
-
 def phonebook_menu():
     print('Option 1. Add a Phone Number Entry')
     print('Option 2. Delete a Phone Number Entry')
@@ -104,23 +102,28 @@ while menu_choice != 6:
     
     elif menu_choice == 3:
         print("\nEditing Contact Information")
-        selection = str(input("\n\nWould you like to change Name or PhoneNumber? Enter here:"))
+        selection = str(input("\n\nWould you like to change Name or Phone Number? Enter here:"))
         if selection.lower() == 'name':
             name = str(input("\nEnter Current Full Name: "))
             print(contact_info[name])
             if name in contact_info:
                 new_name = str(input("\nEnter New Name: "))
                 contact_info[new_name] = contact_info.pop(name)
-        else:
-            selection.lower() == 'phonenumber'
-            phone = input('Please enter CURRENT number in the format XXX-XXX-XXXX: ')
+        
+        elif selection.lower() == 'phone number':
+            name = str(input("\nEnter Current Full Name: "))
+            #phone = input('Please enter CURRENT number in the format XXX-XXX-XXXX: ')
             print(contact_info[name]['phone_number'])
             if phone in contact_info[name]['phone_number']:
                 new_number = input('Please enter NEW number in the format XXX-XXX-XXXX: ')
-                contact_info[name][new_number] = contact_info[name].pop(phone)
-                print(name, "was not found")
+                mylist = contact_info[name]['phone_number']
+                mylist.remove(phone)
+                mylist.append(new_number)
+                print(f"{name} new phone number is {new_number}")
+            else:
+                print("not found")
 
-    
+
     elif menu_choice == 4:
         print("\nLookup Contact Information")
         name = input("\nEnter Full Name: ")
