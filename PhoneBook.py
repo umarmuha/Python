@@ -111,14 +111,14 @@ while menu_choice != 6:
             if name in contact_info:
                 new_name = str(input("\nEnter New Name: "))
                 contact_info[new_name] = contact_info.pop(name)
-            else:
-                selection.lower() == 'phonenumber'
-                phone = input('Please enter CURRENT number in the format XXX-XXX-XXXX: ')
-                print(contact_info[name]['phone_number'])
-                if phone in contact_info[name]['phone_number']:
-                    new_number = input('Please enter NEW number in the format XXX-XXX-XXXX: ')
-                    contact_info[name][new_number] = contact_info[name].pop(phone)
-                    print(name, "was not found")
+        else:
+            selection.lower() == 'phonenumber'
+            phone = input('Please enter CURRENT number in the format XXX-XXX-XXXX: ')
+            print(contact_info[name]['phone_number'])
+            if phone in contact_info[name]['phone_number']:
+                new_number = input('Please enter NEW number in the format XXX-XXX-XXXX: ')
+                contact_info[name][new_number] = contact_info[name].pop(phone)
+                print(name, "was not found")
 
     
     elif menu_choice == 4:
