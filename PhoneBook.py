@@ -93,7 +93,7 @@ while menu_choice != 6:
             if phone in contact_info[name]['phone_number']:
                 contact_info[name]['phone_number'].remove(phone)
                 print(f'\nDeleting Phone Number {phone} Associated with {name}')
-            elif len(contact_info[name]['phone_number']) == 0: #removing ['phone_number']
+            elif len(contact_info[name]['phone_number']) == 0:
             # delete name from contact_infos
                 del contact_info[name]
         else:
