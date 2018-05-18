@@ -62,6 +62,8 @@ while menu_choice != 6:
             continue
              
         name = first_name + " " +last_name
+        
+        #If the name matches an existing name, append the phone number as an entry to the name provided it's NOT already in the list of phone numbers matching that entry       
         if name in contact_info:
             if phone not in contact_info[name]['phone_number']:
                 contact_info[name]['phone_number'].append(phone)
@@ -88,26 +90,31 @@ while menu_choice != 6:
         while not validPhone(phone):
             phone = input('Please enter a phone number in the format XXX-XXX-XXXX: ')
             continue
-               
+        
+        #Only delete the phone number and not the name UNLESS there are no more phone numbers associated with the name
         if name in contact_info.keys():
             if phone in contact_info[name]['phone_number']:
                 contact_info[name]['phone_number'].remove(phone)
-                print(f'\nDeleting Phone Number {phone} Associated with {name}')
-            elif len(contact_info[name]['phone_number']) == 0:
-            # delete name from contact_infos
-                del contact_info[name]
+                #print(f'\nDeleting Phone Number {phone} Associated with {name}')
+                if len(contact_info[name]['phone_number']) == 0:
+                    del contact_info[name] # delete name from contact_info and inform user
+                print("\nDeleting Contact Name since no Phone# associated")
+            else:
+                print(f"Phone Number {phone} not found")
         else:
-            print(f"\nPhone Number {phone} for {name} Not found")
+            print(f"\n{name} Not found")
 
     
     elif menu_choice == 3:
         print("\nEditing Contact Information")
         selection = str(input("\n\nWould you like to change Name or Phone Number? Enter here:"))
+        
         if selection.lower() == 'name':
             name = str(input("\nEnter Current Full Name: "))
             print(contact_info[name])
             if name in contact_info:
                 new_name = str(input("\nEnter New Name: "))
+                #if the name is edited to match an existing name, the phone numbers are copied over and appended to the existing name
                 if new_name in contact_info:
                     new_name_list = contact_info[new_name]['phone_number']
                     old_name_list = contact_info[name]['phone_number']
