@@ -108,7 +108,13 @@ while menu_choice != 6:
             print(contact_info[name])
             if name in contact_info:
                 new_name = str(input("\nEnter New Name: "))
-                contact_info[new_name] = contact_info.pop(name)
+                if new_name in contact_info:
+                    new_name_list = contact_info[new_name]['phone_number']
+                    old_name_list = contact_info[name]['phone_number']
+                    new_name_list += old_name_list
+                    del contact_info[name]
+                else:
+                    contact_info[new_name] = contact_info.pop(name)
         
         elif selection.lower() == 'phone number':
             name = str(input("\nEnter Current Full Name: "))
